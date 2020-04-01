@@ -13,5 +13,15 @@
   <%= @submission.url %>
 </p>
 
+<p>
+  <strong>Submission Image:</strong>
+  <%= image_tag @submission.submission_image.large.url, width: 400 %>
+</p>
+
+<p>
+  <strong>Submission Video:</strong>
+  <%# @submission.submission_video %>
+</p>
+
 <%= link_to 'Edit', edit_submission_path(@submission) %> |
 <%= link_to 'Back', submissions_path %>

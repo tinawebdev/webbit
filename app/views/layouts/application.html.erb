@@ -5,16 +5,112 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,600,700' %>
+    
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="bg-gray-200 relative h-screen overflow-x-hidden">
 
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+    <% flash.each do |type, message| %>
+      <% if type == "alert" %>
+        <div class="bg-red-500">
+          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
+            <%= message %>
+          </div>
+        </div>
+      <% end %>
 
-    <%= yield %>
+      <% if type == "notice" %>
+        <div class="bg-green-500">
+          <div class="container px-2 mx-auto py-4 text-white text-center font-medium font-sans">
+            <%= message %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <nav class="bg-white py-2 border-b border-gray-400" role="navigation" aria-label="
+    main navigation">
+      <div class="flex flex-wrap items-center justify-center lg:justify-start lg:content-center px-4 lg:px-6">
+      
+        <%= link_to root_path, class: "leading-normal no-underline text-gray-800 my-2 md:my-0" do %>
+          <h1 class="text-lg pr-2 font-bold">WEBBIT</h1>
+        <% end %>
+
+        <div class="flex flex-wrap justify-start w-full lg:w-2/3">
+          <div class="w-full lg:w-1/4 px-0 md:px-2 mb-2 lg:mb-0">
+            <div class="relative">
+              <select class="select" id="community">
+                <option>Community 1</option>
+                <option>Community 2</option>
+                <option>Community 3</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <%= render_svg "icons/chevron-down" %>
+              </div>
+            </div>
+          </div>      
+
+          <div class="w-full lg:w-1/2 px-0 md:px-2">
+            <div class="relative">
+              <input class="input pl-10" id="search" type="text" placeholder="Search Webbit" />
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-600">
+                <svg class="fill-current h-4 w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <title>search</title>
+                  <path d="M22.414 19.586l-4.801-4.801A8.942 8.942 0 0 0 19 10a9 9 0 1 0-9 9 8.942 8.942 0 0 0 4.785-1.387l4.801 4.801c.39.391.902.586 1.414.586s1.024-.195 1.414-.586a2 2 0 0 0 0-2.828zM10 15c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-wrap flex-1 items-center justify-end pt-4 lg:pt-0">
+          <div class="mr-3">
+            <% if user_signed_in? %>
+              <%= link_to new_submission_path do %>
+                <%= render_svg "icons/create" %> 
+              <% end %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-outline btn-small mr-2" %>
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline btn-small mr-2" %> 
+            <% end %>
+          </div>
+
+          <% if user_signed_in? %>
+            <div class="dropdown rounded bg-white border border-gray-400 text-gray-600 ml-1 hover:bg-gray-200">
+              <div class="dropdown-content pt-2 pb-2 pl-3 pr-1">
+                <%= link_to "#", class: "js-dropdown-user-target no-underline flex justify-between text-gray-700 uppercase text-xs tracking-wide items-center font-semibold" do %>
+                  <%= current_user.username if current_user.username %>
+                  <%= render_svg "icons/chevron-down" %>
+                <% end %>
+
+                <ul class="list-none hidden dropdown-list absolute left-0 rounded-b border border-gray-500 shadow">
+                  <h5 class="mt-2 uppercase text-xs text-gray-500 font-normal py-2 pl-3 tracking-wide">My Stuff</h5>   
+                  <li>
+                    <%= link_to "#", class: "hover:bg-purple-500 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do %>
+                      <%= render_svg "icons/user", styles: "icon-md fill-current text-gray-600 mr-3" %> My Profile
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_user_registration_path, class: "hover:bg-purple-500 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do %>
+                      <%= render_svg "icons/settings", styles: "icon-md fill-current text-gray-600 mr-3" %> Account Settings
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to destroy_user_session_path, class: "hover:bg-purple-500 hover:text-white text-gray-700 no-underline block py-2 px-4 flex items-center text-sm" do %>
+                      <%= render_svg "icons/signout", styles: "icon-md fill-current text-gray-600 mr-3" %> Sign Out
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          <% end %>          
+        </div>
+      </div>
+    </nav>
+
+    <%= yield %>  
   </body>
 </html>

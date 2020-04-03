@@ -36,14 +36,12 @@
             <%= render_svg "icons/text" %> Text
           <% end %>
         </li>
-
         <li class="w-1/3 text-center cursor-pointer" data-tab="image_video">
           <%= link_to "#image_video", class: "tab" do %>
             <%= render_svg "icons/image" %> Image/Video
           <% end %>
         </li>
-
-          <li class="w-1/3 text-center cursor-pointer" data-tab="url">
+        <li class="w-1/3 text-center cursor-pointer" data-tab="url">
           <%= link_to "#link", class: "tab tab-last" do %>
             <%= render_svg "icons/link" %> Link
           <% end %>
@@ -75,7 +73,6 @@
         <%= form.file_field :submission_image, class: "hidden" %>
       </label>
     </div>
-
     <div class="mb-6">
       <%= form.label :submission_video, class: "label" %>
       <label class="btn btn-white btn-small inline-flex items-center">

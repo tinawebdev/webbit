@@ -1,0 +1,35 @@
+.tab {
+  @apply border-t border-gray-400 no-underline text-gray-700 border-b px-8 py-4 font-bold block w-full flex items-center justify-center;
+}
+
+.tab-first {
+  @apply border-l rounded-tl;
+}
+
+.tab-last {
+  @apply border-r rounded-tr;
+}
+
+.tab:hover {
+  @apply bg-gray-200 text-gray-700;
+}
+
+.tabs li.active .tab {
+  @apply bg-purple-600 text-white;
+}
+
+.tabs .tab svg {
+  @apply text-gray-600 mr-4 fill-current;
+}
+
+.tabs li.active .tab svg {
+  @apply text-white;
+}
+
+.tabs li.active:hover .tab {
+  @apply bg-purple-700 text-purple-100;
+}
+
+.profile-tabs li.active a {
+  @apply border-b-2 border-purple-600;
+}

@@ -23,7 +23,7 @@
     <div class="mb-6">
       <%= f.label :password, class: "label" %>
       <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
-      <p class="text-sm text-grey-dark pt-1 italic"><% if @minimum_password_length %>
+      <p class="text-sm text-gray-dark pt-1 italic"><% if @minimum_password_length %>
       <%= @minimum_password_length %> characters minimum <% end %> (leave blank if you don't want to change it)
       </p>
     </div>
@@ -36,7 +36,7 @@
     <div class="mb-6">
       <%= f.label :current_password, class: "label" %>
       <%= f.password_field :current_password, autocomplete: "current-password", class: "input" %>
-      <p class="text-sm text-grey-dark pt-2 italic">(we need your current password to confirm your changes)</p>
+      <p class="text-sm text-gray-dark pt-2 italic">(we need your current password to confirm your changes)</p>
 
     </div>
 

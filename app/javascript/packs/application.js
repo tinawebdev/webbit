@@ -16,4 +16,5 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import 'css/application.scss';
+import 'components/dropdown.js';
 import 'components/tabs.js';

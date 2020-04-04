@@ -1,0 +1,20 @@
+.dropdown {
+  position: relative;
+  min-width: 180px;
+  z-index: 2;
+
+  .dropdown-list {
+    background-color: white;
+    min-width: 180px;
+    top: 34px;
+    left: -1px;
+    z-index: 1;
+
+    a:hover {
+      svg { 
+        fill: white; 
+      }
+    }
+  }
+  
+}

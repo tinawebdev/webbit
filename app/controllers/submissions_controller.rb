@@ -70,6 +70,6 @@ class SubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def submission_params
-      params.require(:submission).permit(:title, :body, :url, :submission_image, :submission_video)
+      params.require(:submission).permit(:title, :body, :url, :submission_image, :submission_video, :community_id)
     end
 end

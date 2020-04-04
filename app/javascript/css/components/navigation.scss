@@ -3,18 +3,35 @@
   min-width: 180px;
   z-index: 2;
 
-  .dropdown-list {
-    background-color: white;
-    min-width: 180px;
-    top: 34px;
-    left: -1px;
-    z-index: 1;
+  .dropdown-target {
+    border: 1px solid transparent;
 
-    a:hover {
-      svg { 
-        fill: white; 
-      }
+    &:hover {
+      border: 1px solid #dae1e7;
     }
   }
-  
+
+  &.dropdown-user-account {
+    min-width: 220px;
+  }
+
+  .dropdown-menu {
+    background: white;
+    top: 37px;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+
+    a:hover {
+      svg {
+        fill: white;
+      }
+    }
+
+    li:last-of-type a {
+      border-bottom-right-radius: .25rem;
+      border-bottom-left-radius: .25rem;
+    }
+  }
 }

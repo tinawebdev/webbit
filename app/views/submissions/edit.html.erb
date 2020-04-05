@@ -1,6 +1,19 @@
-<h1>Editing Submission</h1>
+<% content_for :community_label, "Edit Submission" %>
 
-<%= render 'form', submission: @submission %>
+<% content_for :primary_content do %>
+  <div class="lg:p-10 pt-10 pb-10 px-4">
+    <h1 class="text-xl font-normal mb-6">Editing Submission <span class="italic"><%= @submission.title %></span></h1>
+      <%= render 'form', submission: @submission %>
+  </div>
+<% end %>
 
-<%= link_to 'Show', @submission %> |
-<%= link_to 'Back', submissions_path %>
+<% content_for :secondary_content do %>
+<div class="px-8 pt-6 pb-8">
+  <div class="text-center my-4">
+    <%= image_tag "submission.svg", class: "max-w-full w-1/2" %>
+  </div>
+  <%= render "guidelines" %>
+</div>
+<% end %>
+
+<%= render "basic_layout" %>

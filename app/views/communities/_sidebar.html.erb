@@ -1,0 +1,34 @@
+<div class="rounded">
+  <div class="px-8 pt-6 pb-8">
+    <div class="m-0 leading-tight flex item-center justify-between">
+      <span class="text-xs no-underline inline-flex items-center text-gray-600">
+        <%= render_svg "icons/conversation", styles: "w-3 fill-current text-gray-500" %>
+        <span class="ml-1">w/<%= community.name %></span>
+      </span>
+      <% if author_of?(community) %>
+        <%= link_to edit_community_path(community), class: "no-underline mr-2" do %>
+          <%= render_svg "icons/edit", styles: "w-4 fill-current text-gray-500", title: "Edit" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <h3 class="m-0 leading-tight text-lg"><%= community.title %></h3>
+    <div class="flex flex-wrap justify-start items-center pt-2">
+      <div class="w-1/2 border-r border-gray-400">
+        <p class="m-0"><%= community.submissions.count %></p>
+        <p class="m-0 text-xs"><%= pluralize(community.submissions.count, 'Submission') %></p>
+      </div>
+      <div class="w-1/2 pl-4">
+        <p class="m-0"> count </p>
+        <p class="m-0 text-xs">Subscribers</p>
+      </div>
+    </div>
+    <hr class="border-b border-gray-400" />
+    
+
+    <div class="text-sm mb-6"><%= community.description %></div>
+    <hr class="border-b border-gray-400" />
+
+    <div class="text-sm mb-6"><%= community.sidebar %></div>
+  </div>
+</div>

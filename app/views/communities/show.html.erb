@@ -1,26 +1,15 @@
-<% content_for :community_label, @community.name %>
+<% content_for :community_label, "w/#{@community.name}" %>
 
-<p id="notice"><%= notice %></p>
+<%= render "community_header", community: @community %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @community.name %>
-</p>
+<% content_for :primary_content do %>
+  <% @community.submissions.each_with_index do |submission, index| %>
+    <%= render "submissions/submission", submission: submission %>
+  <% end %>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @community.title %>
-</p>
+<% content_for :secondary_content do %>
+  <%= render "sidebar", community: @community %>
+<% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @community.description %>
-</p>
-
-<p>
-  <strong>Sidebar:</strong>
-  <%= @community.sidebar %>
-</p>
-
-<%= link_to 'Edit', edit_community_path(@community) %> |
-<%= link_to 'Back', communities_path %>
+<%= render "basic_layout" %>

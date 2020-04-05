@@ -16,7 +16,7 @@
       <div class="text-sm text-grey-700">
         <%= submission.body %>
       </div>
-      <% if user_signed_in? && current_user.id = submission.user_id %>
+      <% if author_of?(submission) %>
         <div class="pt-2 flex flex-wrap items-center">
           <%= link_to edit_submission_path(submission) do %>
             <%= render_svg "icons/edit", title: "Edit", styles: "fill-current text-grey-500 icon-sm" %>

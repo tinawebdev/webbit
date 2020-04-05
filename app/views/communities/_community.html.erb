@@ -1,0 +1,28 @@
+<div class="card flex flex-wrap items-center justify-between px-4 py-2">
+  <div class="flex-1">
+    <%= link_to community, class: "no-underline text-gray-700" do %>
+      <p class="m-0 leading-tight">
+        <span class="text-xs no-underline inline-flex items-center text-gray-600">
+          <%= render_svg "icons/conversation", styles: "w-3 fill-current text-gray-500 mr-1" %>
+          w/<%= community.name %>
+        </span>
+      </p>
+      <h3 class="m-0 leading-none text-base"><%= community.title %></h3>
+    <% end %>
+  </div>
+  <div class="text-xs font-normal flex">
+    <%= link_to community, class: "no-underline" do %>
+      <%= render_svg "icons/view", styles: "w-4 fill-current text-gray-500", title: "View" %>
+    <% end %>
+
+    <% if author_of?(community) %>
+      <%= link_to edit_community_path(community), class: "no-underline ml-2 " do %>
+        <%= render_svg "icons/edit", styles: "w-4 fill-current text-gray-500", title: "Edit"  %>
+      <% end %>
+
+      <%= link_to community, class: "no-underline ml-2", method: :delete, data: { confirm: "Are you sure?" } do %>
+        <%= render_svg "icons/delete", styles: "w-4 fill-current text-gray-500", title: "Delete" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-6">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="mb-6">
+    <%= form.label :title, class: "label" %>
+    <%= form.text_field :title, class: "input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="mb-6">
+    <%= form.label :description, class: "label" %>
+    <%= form.text_area :description, class: "input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :sidebar %>
-    <%= form.text_area :sidebar %>
+  <div class="mb-6">
+    <%= form.label :sidebar, class: "label" %>
+    <%= form.text_area :sidebar, class: "input" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <%= form.hidden_field :user_id, value: current_user.id if user_signed_in? %>
+
+  <div class="mb-6">
+    <%= form.submit class: "btn btn-purple btn-small" %>
   </div>
 <% end %>

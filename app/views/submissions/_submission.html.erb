@@ -1,31 +1,35 @@
 <div class="border-b border-r border-l">
-  <div class="px-2 pt-2 pb-2 flex items-center flex-wrap">
+  <div class="px-2 pt-2 pb-2">
     <%= image_tag submission.submission_image.thumb.url, width: 80, height: 80 if submission.submission_image.present? %>
     <%= video_tag submission.submission_video if submission.submission_video.present? %> 
 
-    <div class="pl-4">
-      <h2 class="mb-1 flex flex-wrap items-center text-xl">
-        <%= link_to submission.title, submission, class: "no-underline" %>
-        <% if submission.url.present? %>
-          <span class="pl-2 text-xs font-normal font-mono text-blue-400 tracking-tight">
-            <%= link_to truncate(submission.url, length: 18), submission.url, class: "no-underline" %>
-          </span>
-        <% end %>
-      </h2>
-
-      <div class="text-sm text-grey-700">
-        <%= submission.body %>
+    <div class="flex items-start">
+      <div class="submission-voting text-xs pr-2">
+        <%= render "submissions/voting", submission: submission %>
       </div>
-      <% if author_of?(submission) %>
-        <div class="pt-2 flex flex-wrap items-center">
-          <%= link_to edit_submission_path(submission) do %>
-            <%= render_svg "icons/edit", title: "Edit", styles: "fill-current text-grey-500 icon-sm" %>
+
+      <div class="flex-1 w-full">
+        <h3 class="mb-0 flex flex-wrap items-center text-base">
+          <% submission_link = submission.url.present? ? submission.url : submission %>
+          <%= link_to submission.title, submission_link, class: "no-underline font-semibold" %>
+
+          <% if submission.url %>
+            <span class="pl-2 text-xs font-normal font-mono text-blue-400 tracking-tighter">
+              <%= link_to truncate(submission.url, length: 18), submission.url, class: "no-underline" %>
+            </span>
           <% end %>
-          <%= link_to submission, method: :delete, class: "no-underline", data: { confirm: 'Are you sure?' } do %>
-            <%= render_svg "icons/delete", title: "Delete", styles: "fill-current text-grey-500 icon-sm" %>
-          <% end %>
-        </div>
-      <% end %>
+        </h3>
+
+        <%= link_to community_path(submission.community), class: "no-underline text-gray-700 font-normal hover:text-gray-700 hover:underline text-sm inline-block" do %>
+          w/<%= submission.community.name %>
+        <% end %>
+
+        <span class="mx-1 inline-block text-sm text-gray-700">•</span>
+
+        <%= render "submissions/posted_by", submission: submission %>
+        <%= render "submissions/actions", submission: submission %>
+      </div>
+
     </div>
   </div>
 </div>

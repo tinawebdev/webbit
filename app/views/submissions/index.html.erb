@@ -11,7 +11,18 @@
 <% end %>
 
 <% content_for :secondary_content do %>
-  <%= link_to 'New Submission', new_submission_path %>  
+  <div class="px-8 pt-6 pb-8">
+    <% unless user_signed_in? %>
+      <%= image_tag "illustration.svg", class: "max-w-full" %>
+      <h3>Explore</h3>
+      <p class="text-gray-600 text-sm">Find your breaking news, sports, TV fan theories, or never-ending streams of cute animals.</p>
+      <%= link_to "How Webbit works", "#", class: "btn btn-small btn-white my-2 block text-center" %>
+    <% else %>
+      <p class="text-gray-600 text-sm">Your personal Webbit frontpage. Come here to check in with your favorite communities.</p>
+      <%= link_to 'New Submission', new_submission_path, class: "btn btn-small btn-purple my-2 block text-center" %>
+      <%= link_to "New Community", new_community_path, class: "btn btn-small btn-white my-2 block text-center" %>
+    <% end %>
+  </div> 
 <% end %>
 
 <%= render "basic_layout" %>

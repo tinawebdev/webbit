@@ -1,0 +1,11 @@
+<p class="text-sm text-gray-600 my-2">comment as <%= link_to current_user.username, "#", class: "link" %></p>
+
+<%= form_for([@submission, @comment], remote: true) do |f| %>
+  <div class="relative">
+    <%= f.text_area :reply, class: "input h-32 border border-gray-200 resize-none", placeholder: "What are your thoughts?" %>
+
+    <div class="flex flex-wrap justify-end">
+      <%= f.submit class: "btn btn-small btn-purple block w-full text-center mt-2 lg:w-auto lg:inline-flex" %>
+    </div>
+  </div>
+<% end %>

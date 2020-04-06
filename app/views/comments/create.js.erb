@@ -1,0 +1,4 @@
+var comments = document.getElementById("comments");
+var commentField = document.getElementById('comment_reply');
+comments.insertAdjacentHTML("beforeend", "<%= escape_javascript(render(@comment)) %>");
+commentField.value = "";

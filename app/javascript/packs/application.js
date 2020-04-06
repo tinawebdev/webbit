@@ -17,4 +17,5 @@ require("channels")
 
 import 'css/application.scss';
 import 'components/dropdown.js';
+import "components/modal";
 import 'components/tabs.js';

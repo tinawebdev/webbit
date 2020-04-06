@@ -37,8 +37,12 @@
             <%= link_to "Sign up", new_user_registration_path, class: "link" %> to comment.
           </p>
         <% else %>
-          <%# TODO: Render Comments  %>
+          <%= render "comments/form" %>
         <% end %>
+
+        <div id="comments" class="mt-6 border-t border-gray-200">
+          <%= render @submission.comments %>
+        </div>
       </div>
     </div>
   </div>
@@ -49,3 +53,14 @@
 <% end %>
 
 <%= render "basic_layout" %>
+
+<div id="edit-comment">
+  <div class="modal">
+    <div class="max-w-xl m-auto mt-5 bg-white p-10 pt-4 relative rounded-lg shadow-lg">
+      <button class="js-close-modal absolute top-0 right-0 mr-4 mt-4">
+        <%= render_svg "icons/close", title: "Close", styles: "icon-md fill-current text-gray-500" %>
+      </button>
+      <div class="modal-inner"></div>
+    </div>
+  </div>
+</div>

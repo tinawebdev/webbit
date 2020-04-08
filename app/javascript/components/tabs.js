@@ -64,6 +64,18 @@ document.addEventListener('turbolinks:load', () => {
 
       text.querySelector("textarea").value = "";
     }
+
+    // Profile Submissions
+    if (event.target.parentElement.dataset.tab == types.submissions) {
+      submissions.classList.remove('hidden');
+      comments.classList.add('hidden');
+    }
+
+    // Profile Comments
+    if (event.target.parentElement.dataset.tab == types.comments) {
+      comments.classList.remove('hidden');
+      submissions.classList.add('hidden');
+    }
   }
 
   if (element != null) {

@@ -1,0 +1,48 @@
+<% content_for :community_label, "u/#{@user.username}" %>
+
+<nav class="bg-white px-6 py-3 border-box">
+  <ul id="nav-tab" class="list-none p-0 profile-tabs">
+    <li class="inline-block mr-2 active" data-tab="profile_submissions">
+      <%= link_to "Submissions", "#profile_submissions", class: "link font-medium hover:text-purple-500 py-3 text-sm" %>
+    </li>
+    <li class="inline-block mr-2" data-tab="profile_comments">
+      <%= link_to "Comments", "#profile_comments", class: "link font-medium hover:text-purple-500 py-3 text-sm" %>
+    </li>
+  </ul>
+</nav>
+
+<% content_for :primary_content do %>
+  <% if @user.submissions.any? %>
+    <div id="profile_submissions">
+      <% @user.submissions.each do |submission| %>
+        <%= render "submissions/submission", submission: submission %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @user.comments.any? %>
+    <div id="profile_comments">
+      <% @user.comments.each do |comment| %>
+        <%= render "profile_comment", comment: comment %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% content_for :secondary_content do %>
+  <div class="p-4 text-center">
+    <%= gravatar_for(@user, styles: "inline rounded-full") %>
+    <h3><%= @user.username %></h3>
+    <div class="italic text-sm text-gray-600">
+      Joined <%= time_ago_in_words(@user.created_at) %> ago
+    </div>
+    <% if user_signed_in? %>
+      <%= link_to "Create new Submission", new_submission_path, class: "btn btn-purple btn-small w-full block my-2" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "btn btn-white btn-small w-full block my-2" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-purple btn-small w-full block my-2" %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= render "basic_layout" %>

@@ -1,0 +1,16 @@
+var vote = document.querySelector("#submission-<%= @submission.id %> .js-votes");
+var dynamicNotice = document.querySelector(".js-notice");
+vote.innerHTML = "<%= escape_javascript(@submission.total_vote_count) %>";
+
+dynamicNotice.innerHTML = `
+  <div class="bg-white shadow rounded-lg animate fadeInUp">
+    <div class="px-2 py-4 text-purple-600 text-center leading-normal font-medium font-sans flex justify-center items-center">
+        <%= render_svg "icons/info", styles: "fill-current text-purple-600 icon-sm ml-4" %>
+        <div class="flex-1"><%= notice %></div>
+    </div>
+  </div>
+`;
+
+setTimeout(function() {
+  dynamicNotice.innerHTML = "";
+}, 3000);

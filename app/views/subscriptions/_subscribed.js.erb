@@ -1,0 +1,6 @@
+var subscribedBlock = document.getElementById('subscribed_block');
+var subscribedCount = document.getElementById('subscribed_count');
+subscribedBlock.innerHTML = "";
+subscribedCount.innerHTML = "";
+subscribedBlock.insertAdjacentHTML("beforeend", "<%= escape_javascript(render partial: "subscriptions/subscription", community: @community) %>");
+subscribedCount.insertAdjacentHTML("beforeend", "<%= escape_javascript(@community.subscriptions.count.to_s) %>");

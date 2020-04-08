@@ -13,13 +13,18 @@
     </div>
 
     <h3 class="m-0 leading-tight text-lg"><%= community.title %></h3>
+
+    <div id="subscribed_block" class="my-6">
+      <%= render "subscriptions/subscription", community: community %>
+    </div>
+
     <div class="flex flex-wrap justify-start items-center pt-2">
       <div class="w-1/2 border-r border-gray-400">
         <p class="m-0"><%= community.submissions.count %></p>
         <p class="m-0 text-xs"><%= pluralize(community.submissions.count, 'Submission') %></p>
       </div>
       <div class="w-1/2 pl-4">
-        <p class="m-0"> count </p>
+        <p id="subscribed_count" class="m-0"><%= community.subscriptions.count %></p>
         <p class="m-0 text-xs">Subscribers</p>
       </div>
     </div>

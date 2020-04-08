@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  <% unless current_user.communities.include? @community %>
+    <%= link_to "Subscribe", community_subscriptions_path(@community), method: :post, remote: true, class: "btn btn-purple btn-small w-100 block text-center" %>
+  <% else %>
+    <%= link_to "Unsubscribe", community_subscriptions_path(@community), method: :delete, remote: true, class: "btn btn-outline btn-small w-100 block text-center" %>
+    <% end %>
+<% else %>
+  <%= link_to "Subscribe", new_user_session_path, class: "btn btn-purple btn-small w-100 block text-center" %>
+<% end %>

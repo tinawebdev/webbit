@@ -1,9 +1,29 @@
-<%= link_to "#", class: "block text-center" do %>
-  <%= render_svg "icons/up-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
-<% end %>
+<% if user_signed_in? %>
 
-<span class="text-gray-700 text-center block text-sm js-votes">1</span>
+  <%= link_to upvote_submission_path(submission), remote: true, method: :put, class: "block text-center" do %>
+    <%= render_svg "icons/up-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
+  <% end %>
 
-<%= link_to "#", class: "block text-center" do %>
-  <%= render_svg "icons/down-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
+  <span class="text-gray-700 text-center block text-sm js-votes">
+    <%= submission.total_vote_count %>
+  </span>
+
+  <%= link_to downvote_submission_path(submission), remote: true, method: :put, class: "block text-center" do %>
+    <%= render_svg "icons/down-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
+  <% end %>
+
+<% else %>
+
+  <%= link_to new_user_session_path, class: "block text-center" do %>
+    <%= render_svg "icons/up-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
+  <% end %>
+
+  <span class="text-gray-700 text-center block text-sm js-votes">
+    <%= submission.total_vote_count %>
+  </span>
+
+  <%= link_to new_user_session_path, class: "block text-center" do %>
+    <%= render_svg "icons/down-vote", title:"upvote", styles: "fill-current text-gray-600 hover:text-purple-700 inline" %>
+  <% end %>
+
 <% end %>

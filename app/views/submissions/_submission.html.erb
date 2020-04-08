@@ -1,13 +1,20 @@
 <div id="submission-<%= submission.id %>" class="border-b border-r border-l">
-  <div class="px-2 pt-2 pb-2">
-    <%= image_tag submission.submission_image.thumb.url, width: 80, height: 80 if submission.submission_image.present? %>
-    <%= video_tag submission.submission_video if submission.submission_video.present? %> 
+  <div class="px-2 pt-2 pb-2 flex items-start flex-wrap">
+    <div class="submission-voting text-xs pr-2">
+      <%= render "submissions/voting", submission: submission %>
+    </div>
 
-    <div class="flex items-start">
-      <div class="submission-voting text-xs pr-2">
-        <%= render "submissions/voting", submission: submission %>
-      </div>
+    <div>
+      <%= link_to submission do %>
+        <%= image_tag submission.submission_image.large.url, class: "lg:w-24 w-full max-w-full h-16 object-cover object-center" %>
+      <% end if submission.submission_image.present? %>
 
+      <%= link_to submission do %>
+        <%= video_tag submission.submission_video.url, class:"lg:w-24 w-full max-w-full"  %>
+      <% end if submission.submission_video.present? %>
+    </div>
+
+    <div class="flex items-start flex-1 pl-4">
       <div class="flex-1 w-full">
         <h3 class="mb-0 flex flex-wrap items-center text-base">
           <% submission_link = submission.url.present? ? submission.url : submission %>
@@ -29,7 +36,6 @@
         <%= render "submissions/posted_by", submission: submission %>
         <%= render "submissions/actions", submission: submission %>
       </div>
-
     </div>
   </div>
 </div>

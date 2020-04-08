@@ -1,4 +1,6 @@
 class Submission < ApplicationRecord
+  include VotesCountable
+  
   mount_uploader :submission_image, SubmissionImageUploader
   mount_uploader :submission_video, SubmissionVideoUploader
 
@@ -12,8 +14,4 @@ class Submission < ApplicationRecord
   validates :url, url: { allow_blank: true }
 
   acts_as_votable
-
-  def total_vote_count
-    (self.get_upvotes.size - self.get_downvotes.size).to_s
-  end
 end

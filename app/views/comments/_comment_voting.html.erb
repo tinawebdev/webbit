@@ -1,8 +1,25 @@
-<%= link_to "#" do %>
-  <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
-<% end %>
+<% unless user_signed_in? %>
+  <%= link_to new_user_session_path do %>
+    <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
+  <% end %>
 
-<span class="text-gray-700 text-center text-sm js-votes">0</span>
-<%= link_to "#" do %>
-  <%= render_svg "icons/down-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
+  <span class="text-gray-700 text-center text-sm js-votes">
+    <%= comment.total_vote_count %>
+  </span>
+
+  <%= link_to new_user_session_path do %>
+    <%= render_svg "icons/down-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
+  <% end %>
+<% else %>
+  <%= link_to upvote_submission_comment_path(comment.submission, comment), method: :put, remote: true do %>
+    <%= render_svg "icons/up-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
+  <% end %>
+
+  <span class="text-gray-700 text-center text-sm js-votes">
+    <%= comment.total_vote_count %>
+  </span>
+
+  <%= link_to downvote_submission_comment_path(comment.submission, comment), method: :put, remote: true do %>
+    <%= render_svg "icons/down-vote", title: "upvote", styles: "fill-current text-gray-600 hover:text-purple-500" %>
+  <% end %>
 <% end %>

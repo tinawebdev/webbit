@@ -11,13 +11,12 @@
     <div class="my-2 flex justify-end">
       <% if author_of?(comment) %>
         <%= link_to edit_submission_comment_path(comment.submission, comment), class: "no-underline mr-2", remote: true do %>
-        <%= render_svg "icons/edit", styles: "fill-current text-gray-500 icon-sm hover:text-gray-600" %>
+          <%= render_svg "icons/edit", styles: "fill-current text-gray-500 icon-sm hover:text-gray-600" %>
         <% end %>
 
         <%= link_to submission_comment_path(comment.submission, comment), method: :delete, data: { confirm: "Are your sure?" }, class: "no-underline" do %>
-        <%= render_svg "icons/delete", styles: "fill-current text-gray-500 icon-sm hover:text-gray-600" %>
+          <%= render_svg "icons/delete", styles: "fill-current text-gray-500 icon-sm hover:text-gray-600" %>
         <% end %>
-
       <% end %>
     </div>
   </div>

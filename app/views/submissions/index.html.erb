@@ -1,3 +1,5 @@
+<% content_for :community_label, "My Feed - Webbit" %>
+
 <% content_for :primary_content do %>
   <% if @submissions.exists? %>
     <%= render @submissions %>

@@ -4,3 +4,5 @@ Your submission <%= @submission.title %> recieved a response.
 
 New Comment:
 <%= @comment.reply %>
+
+<%= link_to "Unsubscribe", comment_unsubscribe_url(@submission.user.unsubscribe_hash) %>

@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resource :subscriptions
   end
 
+  get "submissions/unsubscribe/:unsubscribe_hash" => "submissions#unsubscribe", :as =>
+  "comment_unsubscribe"
+
   resources :submissions do
     member do
       put "upvote", to: "submissions#upvote"

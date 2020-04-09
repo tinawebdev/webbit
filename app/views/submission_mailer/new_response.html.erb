@@ -4,3 +4,7 @@
 
 <p>New Comment:</p>
 <p><%= @comment.reply %></p>
+
+<p>
+  <%= link_to "Unsubscribe", comment_unsubscribe_url(@submission.user.unsubscribe_hash) %>
+</p>

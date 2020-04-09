@@ -12,7 +12,8 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     respond_to do |format|
-      if @comment.save        
+      if @comment.save
+        SubmissionMailer.with(comment: @comment, submission: @submission).new_response.deliver_later
         format.html { redirect_to submission_path(@submission) }
         format.js # renders create.js.erb in app/views/comments/
         format.json { render json: @comment, status: :created, location: @comment }

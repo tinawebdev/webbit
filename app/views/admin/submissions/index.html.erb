@@ -1,0 +1,9 @@
+<% content_for :community_label, "Admin Submission Feed" %>
+
+<%= render "admin/nav" %>
+
+<% content_for :primary_content do %>
+  <%= render partial: "submissions/submission", collection: @submissions %>
+<% end %>
+
+<%= render "basic_layout" %>

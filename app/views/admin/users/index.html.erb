@@ -1,0 +1,21 @@
+<% content_for :community_label, "Admin User Feed" %>
+
+<%= render "admin/nav" %>
+
+<div class="container m-auto bg-white rounded mt-10 shadow lg:p-8 p-4 text-gray-900">
+  <% @users.each do |user| %>
+    <div class="flex flex-wrap justify-start items-center lg:my-4 mb-10">
+      <div class="lg:w-1/4 w-full">
+      <%= link_to profile_path(user), class: "flex items-center" do %>
+        <%= gravatar_for(user, styles: "rounded-full w-8") %>
+        <p class="ml-4"><%= user.username %></p>
+      <% end %>
+      </div>
+      <div class="lg:w-1/4 w-full lg:m-0 mb-2"><%= user.email %></div>
+      <div class="lg:w-1/4 w-full text-sm lg:m-0 mb-2">Account created <%= time_ago_in_words(user.created_at) %> ago</div>
+      <div class="lg:w-1/4 w-full lg:m-0 mt-2 lg:text-right text-left">
+      <%= link_to "Delete", profile_path(user), method: :delete, data: { confirm: "Are you sure you want to permanently remove #{user.username} from Webbit?" }, class: "btn btn-outline btn-small" %>
+      </div>
+    </div>
+  <% end %>
+</div>

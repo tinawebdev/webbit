@@ -62,13 +62,15 @@
 
           <div class="w-full lg:w-1/2 px-0 md:px-2">
             <div class="relative">
-              <input class="input pl-10" id="search" type="text" placeholder="Search Webbit" />
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-600">
-                <svg class="fill-current h-4 w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <title>search</title>
-                  <path d="M22.414 19.586l-4.801-4.801A8.942 8.942 0 0 0 19 10a9 9 0 1 0-9 9 8.942 8.942 0 0 0 4.785-1.387l4.801 4.801c.39.391.902.586 1.414.586s1.024-.195 1.414-.586a2 2 0 0 0 0-2.828zM10 15c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z" />
-                </svg>
-              </div>
+              <%= form_tag search_path, method: :get do %>
+                <%= text_field_tag :q, nil, id: "search", placeholder: "Search Webbit", class: "input py-3 pl-10" %>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-600">
+                  <svg class="fill-current h-4 w-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <title>search</title>
+                    <path d="M22.414 19.586l-4.801-4.801A8.942 8.942 0 0 0 19 10a9 9 0 1 0-9 9 8.942 8.942 0 0 0 4.785-1.387l4.801 4.801c.39.391.902.586 1.414.586s1.024-.195 1.414-.586a2 2 0 0 0 0-2.828zM10 15c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z" />
+                  </svg>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

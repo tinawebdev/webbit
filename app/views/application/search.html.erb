@@ -1,0 +1,44 @@
+<% content_for :community_label, "Results for '#{params[:q]}'" %>
+
+<div class="bg-gray-700 text-white mb-6">
+  <div class="container lg:p-10 p-4">
+    <h1 class="lg:text-3xl text-lg">Results for "<%= params[:q] %>"</h1>
+  </div>
+</div>
+
+<% if @submission_results.exists? %>
+  <div class="w-full md:w-2/3 m-auto pr-0 md:pr-6 mb-6">
+    <div class="bg-white shadow rounded-sm">
+      <h3 class="uppercase text-sm text-gray-700 tracking-wide font-semibold px-4 pt-2 border-t border-r border-l border-gray-400 rounded-t">Submissions</h3>
+      <%= render partial: "submission_result", collection: @submission_results %>
+    </div>
+  </div>
+<% end %>
+
+<% if @community_results.exists? %>
+  <div class="w-full md:w-2/3 m-auto pr-0 md:pr-6 mb-6">
+    <div class="bg-white shadow rounded-sm">
+      <h3 class="uppercase text-sm text-gray-700 tracking-wide font-semibold px-4 pt-2 border-t border-r border-l border-gray-400 rounded-t">Communities</h3>
+      <div class="px-4 border-r border-l border-gray-400 py-4">
+      <%= render partial: "community_result", collection: @community_results %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @user_results.exists? %>
+  <div class="w-full md:w-2/3 m-auto pr-0 md:pr-6 mb-6">
+    <div class="bg-white shadow rounded-sm">
+      <h3 class="uppercase text-sm text-gray-700 tracking-wide font-semibold px-4 pt-2 border-t border-r border-l border-gray-400 rounded-t">Users</h3>
+      <%= render partial: "user_result", collection: @user_results %>
+    </div>
+  </div>
+<% end %>
+
+<% if @submission_results.empty? && @community_results.empty? && @user_results.empty? %>
+  <div class="w-full md:w-2/3 m-auto pr-0 md:pr-6 mb-6">
+    <div class="bg-white shadow rounded-sm">
+      <p class="text-xl p-6">Your search returned 0 results</p>
+    </div>
+  </div>
+<% end %>

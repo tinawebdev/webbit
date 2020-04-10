@@ -1,0 +1,7 @@
+<div class="p-4 flex flex-wrap justify-start items-center bg-none border-r border-l border-b border-gray-400">
+  <div><%= gravatar_for(user_result) %></div>
+  <div class="pl-4">
+    <h4><%= link_to user_result.username, profile_path(user_result), class: "link" %></h4>
+    <div class="italic text-sm text-gray-600">Joined <%= time_ago_in_words(user_result.created_at) %> ago.</div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class Submission < ApplicationRecord
+  extend FriendlyId
   include VotesCountable
   
   mount_uploader :submission_image, SubmissionImageUploader
@@ -18,6 +19,8 @@ class Submission < ApplicationRecord
   validate :url_or_content
 
   acts_as_votable
+
+  friendly_id :title, use: :slugged
 
   private
 

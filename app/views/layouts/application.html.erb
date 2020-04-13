@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webbit</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= favicon_link_tag asset_path('favi/favicon-96x96.png') %>
+
+    <%= display_meta_tags(
+      site: "A fake Reddit clone | Webbit",
+      reverse: true,
+      viewport: "width=device-width, initial-scale=1",
+      og: {
+        title: :title,
+        type: "website",
+        url: request.original_url,
+        image: [{
+          _: image_url('opengraph.jpg'),
+          width: 1200,
+          height: 630
+        }],
+        site_name: "webbit.com",
+        description: "A fake Reddit clone"
+      },
+      twitter: {
+        card: "photo",
+        image: {
+          _: image_url('opengraph.jpg'),
+          width: 1200,
+          height: 630
+        }
+      }) %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,500,600,700' %>

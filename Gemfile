@@ -23,6 +23,7 @@ gem 'inline_svg', '~> 1.7', '>= 1.7.1'
 gem 'sidekiq', '~> 6.0', '>= 6.0.6'
 gem 'ransack', '~> 2.3', '>= 2.3.2'
 gem 'friendly_id', '~> 5.3'
+gem 'meta-tags', '~> 2.13'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
